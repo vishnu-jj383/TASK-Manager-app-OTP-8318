@@ -1,0 +1,81 @@
+/* add.module.css */
+
+.editfullpage {
+    background-color: #dde7e2;
+    padding: 20px;
+  }
+  
+  .form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #9f0404;
+  }
+  
+  .input, .textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color:#0e0101
+  }
+  
+  .textarea {
+    height: 100px;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .form {
+      padding: 15px;
+    }
+  
+    .input, .textarea {
+      font-size: 1rem;
+    }
+  
+    .button {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .form {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .label {
+      font-size: 0.9rem;
+    }
+  
+    .input, .textarea {
+      font-size: 0.9rem;
+    }
+  }
+  
