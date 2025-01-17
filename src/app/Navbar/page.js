@@ -45,6 +45,7 @@ function Navbar() {
     return (
         <nav className="bg-gray-800 p-4 navbar">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
+           
                 {/* Logo */}
                 <div className="text-white text-2xl font-semibold">
                     <Link href="/">Task Management</Link>

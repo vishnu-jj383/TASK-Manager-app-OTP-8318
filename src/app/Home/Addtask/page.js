@@ -1,14 +1,12 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import Link from "next/link";
+import React, { useState, useEffect } from 'react'
 import Cookies from 'js-cookie';
 import axios from "axios";
-import styles from "./edit.module.css";
-import Navbar from "@/app/Navbar/page";
-
+import Navbar from '../../Navbar/page';
+import styles from './add.module.css'
 import { useRouter } from "next/navigation";
 
-function Edittask({ params }) {
+function Addtask() {
     const [id, setId] = useState("");
     const [taskname, setTaskname] = useState("");
     const [description, setDescription] = useState("");
@@ -17,7 +15,7 @@ function Edittask({ params }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const router = useRouter();
-    const uniqueId = React.use(params)?.edit;
+   
      const [user, setUser] = useState(null);
     useEffect(() => {
         // Get the 'user' cookie
@@ -29,61 +27,42 @@ function Edittask({ params }) {
             // If no user data is found, redirect to login
             router.push('/Login');
         }
-        if (uniqueId) {
-            const getEditData = async () => {
-                try {
-                    const response = await axios.get(`http://localhost:4001/task/${uniqueId}`);
-                    setId(response.data.id || "");  // Set default empty string
-                    setTaskname(response.data.TaskName || ""); // Set default empty string
-                    setDescription(response.data.description || ""); // Set default empty string
-                    setStartdate(response.data.StartDate || ""); // Set default empty string
-                    setEnddate(response.data.EndDate || ""); // Set default empty string
-                } catch (err) {
-                    console.error("Error fetching data:", err);
-                    setError("Failed to fetch data");
-                } finally {
-                    setLoading(false);
-                }
-            };
+       
+    }, [ router]);
+    const handleAdd = async (e) => {
+        e.preventDefault()
     
-            getEditData();
-        }
-    }, [uniqueId, router]);
-    const handleEdit = async (e) => {
-        e.preventDefault();
+        // Basic validation
         if (!id || !taskname || !startdate || !enddate) {
-          alert("All fields are required!");
+          setError("All fields are required!");
           return;
         }
     
         try {
-          await axios.put(`http://localhost:4001/task/${uniqueId}`, {
-            id,
-           
-            TaskName: taskname,
-            StartDate: startdate,
-            EndDate: enddate,
-            description
-            
+          await axios.post("http://localhost:4001/task/", {
+            "id": id,
+            "TaskName": taskname,
+            "StartDate": startdate,
+            "EndDate": enddate,
+            "description": description
           });
-          alert("Changes saved successfully!");
-          router.push("/Home");
-        } catch (err) {
-          console.error("Error saving changes:", err);
-          alert("Failed to save changes.");
-        }
-      };
+          alert("Post saved!");
     
+          setError(""); // Clear error on success
+        } catch (err) {
+          setError("Failed to save the post. Please try again.");
+        }
+      }
     //   if (loading) return <p>Loading...</p>;
     //   if (error) return <p style={{ color: "red" }}>{error}</p>;
   return (
     <>
-    <Navbar />
+     <Navbar />
     <div className={`${styles.editfullpage} p-6`} style={{ backgroundColor: "#f4f7fa", minHeight: "100vh" }}>
-      
+     
       <center>
         <form
-          onSubmit={handleEdit}
+          onSubmit={handleAdd}
           className={styles.form}
           style={{
             display: "flex",
@@ -133,7 +112,7 @@ function Edittask({ params }) {
               <label htmlFor="startdate" className={styles.label}>Start Date</label>
               <input
                 className={styles.input}
-                type="text"
+                type="date"
                 onChange={(e) => setStartdate(e.target.value)}
                 value={startdate}
                 required
@@ -145,7 +124,7 @@ function Edittask({ params }) {
               <label htmlFor="enddate" className={styles.label}>End Date</label>
               <input
                 className={styles.input}
-                type="text"
+                type="date"
                 onChange={(e) => setEnddate(e.target.value)}
                 value={enddate}
                 required
@@ -181,7 +160,7 @@ function Edittask({ params }) {
                 transition: "background-color 0.3s ease",
               }}
             >
-             Save Changes
+              Add Task
             </button>
           </center>
         </form>
@@ -191,4 +170,4 @@ function Edittask({ params }) {
 );
 }
 
-export default Edittask
+export default Addtask

@@ -50,7 +50,7 @@ function Login() {
 
               placeholder="Enter your email" required />
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password"
+        <input type="password" id="password" style={{color:"black"}} name="password"
          value={password}
          onChange={(e) => setPassword(e.target.value)}
 

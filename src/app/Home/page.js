@@ -50,22 +50,15 @@ function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar/>  
-    {user ? (
-        <div>
-            <h1>Welcome, {user.username}!</h1>
-            {/* You can access and display user data here */}
-        </div>
-    ) : (
-        <p>Loading...</p>
-    )}
- <div className="flex justify-between items-center mt-4 px-6">
+   
+ <div className="flex justify-end mt-4 px-6">
       
-        {/* <Link
+        <Link
           className="btn btn-success bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md"
-          href="/CallAddBlog"
+          href="/Home/Addtask"
         >
-          Add Blog
-        </Link> */}
+          Add Task
+        </Link>
       </div>
 
       <div className="flex-1 mt-6 px-4">
