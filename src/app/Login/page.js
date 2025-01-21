@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from "next/navigation"; 
 import styles from "./login.module.css"
 import Cookies from 'js-cookie';
+import Image from 'next/image'; // Import Next.js Image component
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -39,6 +40,14 @@ function Login() {
   return (
     <div className={styles.container}>
     <div className={styles.formContainer}>
+    {/* <div className="text-center mb-4">
+                    <Image 
+                         src="/img1.avif"  
+                        alt="Login Image" 
+                        width={300} 
+                        height={200} 
+                    />
+                </div> */}
       <h2 className={styles.title}>Login</h2>
       <form className={styles.form}>
       {error && <p className="text-red-500 mb-4">{error}</p>}

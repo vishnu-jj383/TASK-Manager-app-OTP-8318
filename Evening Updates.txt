@@ -1,0 +1,10 @@
+Evening Updates
+ 
+Tasks In Progress
+
+
+
+OTP-8318: Build a Task Management Application with Backend Integration:
+Created a Mini Task Management application , and applyed styling and responsiveness . Login page creation and authentication are also completed.
+Deployed Task Management Application to vercel.
+Tasks in todo: 
